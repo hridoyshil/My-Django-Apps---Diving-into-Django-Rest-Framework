@@ -17,10 +17,31 @@ class StatusAPIView(APIView):
 
 
 class StatusListAPIView(generics.ListAPIView):
-    queryset = Status.objects.all()
+    queryset = Status.objects.all() 
     serializer_class = StatusSerializer
 
 
 class StatusCreateAPIView(generics.CreateAPIView):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer  
+
+class StatusDetailAPIView(generics.RetrieveAPIView):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
+    lookup_field = "id"
+
+
+    # def get_object(self, *args, **kwargs):
+    #     kwargs = self.kwargs
+    #     kw_id = kwargs.get("id")
+    #     return Status.objects.get(id=kw_id)
+
+class StatusUpdateAPIView(generics.UpdateAPIView):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
+    lookup_field = "id"
+
+class StatusDeleteAPIView(generics.DestroyAPIView):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
+    lookup_field = "id"
