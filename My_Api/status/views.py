@@ -1,12 +1,12 @@
-# from django.shortcuts import render
-
 from .models import Status  # Model
 from .serializers import StatusSerializer  # Serializer based on Status Model
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-# Create your views here.
+from rest_framework import generics
+
+# Create your views here. 
 
 
 class StatusAPIView(APIView):
@@ -14,3 +14,13 @@ class StatusAPIView(APIView):
         status_list = Status.objects.all()
         status_serializer = StatusSerializer(status_list, many=True)
         return Response(status_serializer.data)
+
+
+class StatusListAPIView(generics.ListAPIView):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
+
+
+class StatusCreateAPIView(generics.CreateAPIView):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer  
