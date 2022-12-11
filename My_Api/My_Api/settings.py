@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'status',
     'rest_framework',
     "corsheaders",
+    'django_cleanup',
 ]
 
 CORS_ORIGIN_ALLOW_ALL= True
